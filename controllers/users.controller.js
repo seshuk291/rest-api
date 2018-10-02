@@ -29,8 +29,8 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    await User.findByIdAndUpdate(req.params._id, req.body);
-    const user = await User.findById(req.params._id);
+    // after the update send the new data
+    const user = await User.findByIdAndUpdate(req.params._id, req.body, {new: true});
     res.json(user);
   } catch (error) {
     res.json(error);
